@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('subcategory_name');
             $table->bigInteger('category_id');
             $table->string('category_name');
-            $table->integer('product_count');
+            $table->integer('product_count')->default(0);
             $table->string('slug');
             $table->timestamps();
         });

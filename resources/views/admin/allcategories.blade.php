@@ -19,28 +19,37 @@
   </div>
 <div style="margin-top:10px;">
     <div class="card">
-
-            <h5 class="card-header">Light Table head</h5>
+        @if (session()->has('message'))
+            <div class="alert alert-success">
+                {{session()->get('message')}}
+                </div>          
+        @endif
+            <h5 class="card-header">All Categories</h5>
             <div class="table-responsive text-nowrap">
                 <table class="table">
                     <thead class="table-light">
+            
+
                         <tr>
                             <th>Id</th>
                             <th>Category name</th>
                             <th>Sub category</th>
-                            <th>Status</th>
+                            <th>Slug</th>
                             <th>Actions</th>
                         </tr>
+                 
                     </thead>
                     <tbody class="table-border-bottom-0">
+
+                        @foreach ($categories as $category)
                         <tr>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>1</strong></td>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Electronics</strong></td>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>10</strong></td>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>100</strong></td>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <a href="" class="btn btn-primary">Edit</a> <a href=""  class='btn btn-danger'>Delete</a> </td>
+                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{$category->id}}</strong></td>
+                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{$category->category_name}}</strong></td>
+                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{$category->subcategory_count}}</strong></td>
+                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{$category->slug}}</strong></td>
+                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <a href="{{route('editCategory', $category->id)}}" class="btn btn-primary">Edit</a> <a href="{{route('deleteCategory', $category->id)}}"  class='btn btn-danger'>Delete</a> </td>
                         </tr>
-                       
+                        @endforeach
                        
                     </tbody>
                 </table>
