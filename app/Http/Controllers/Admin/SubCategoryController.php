@@ -34,7 +34,7 @@ class SubCategoryController extends Controller
         $category_name = Category::where('id', $category_id)->value('category_name');
         
         Subcategory::insert([
-            'subcategory_name' => $request->subcategory_name	,
+            'subcategory_name' => $request->subcategory_name,
             'slug' => strtolower(str_replace('', '-', $request->category_name)),
             'category_id'=>$category_id,
             'category_name'=>$category_name,

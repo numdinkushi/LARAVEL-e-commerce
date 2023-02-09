@@ -60,6 +60,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::controller(ProductsController::class)->group(function(){
         Route::get('/all-product', 'index')->name('allProduct');
         Route::get('/add-product', 'addProduct')->name('addProduct');
+        Route::post('/store-product', 'storeProduct')->name('storeProduct');
     });
 
       Route::controller(OrderController::class)->group(function(){

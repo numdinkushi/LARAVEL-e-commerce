@@ -15,13 +15,17 @@ All products-kushiCom
     </div>
 </div>
 <div class="card-header d-flex align-items-center justify-content-between">
-    <h5 class="mb-0">Add new category</h5>
+    <h5 class="mb-0">Add new product</h5>
     {{-- <small class="text-muted float-end">Default label</small> --}}
   </div>
 <div style="margin-top:10px;">
     <div class="card">
-
-            <h5 class="card-header">Light Table head</h5>
+        @if (session()->has('message'))
+        <div class="alert alert-success">
+            {{session()->get('message')}}
+            </div>          
+    @endif
+            <h5 class="card-header">All product</h5>
             <div class="table-responsive text-nowrap">
                 <table class="table">
                     <thead class="table-light">

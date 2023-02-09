@@ -18,50 +18,50 @@ Add product-kushiCom
             {{-- <small class="text-muted float-end">Default label</small> --}}
           </div>
           <div class="card-body">
-            <form method="POST" action="">
-        
+            <form method="POST" action="{{route('storeProduct')}}" enctype="multipart/form-data">
+        @csrf
               <div class="row mb-3">
                 <label class="row-sm-2 row-form-label" for="basic-default-name">Product name</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="category_name" placeholder="electronics" name="category_name" />
+                  <input type="text" class="form-control" id="product_name" placeholder="Electronics" name="product_name" />
                 </div>
               </div>
            
               <div class="row mb-3">
-                <label class="row-sm-2 row-form-label" for="basic-default-name">Product price</label>
+                <label class="row-sm-2 row-form-label" for="basic-default-name" >Product price</label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control" id="category_name" placeholder="100" name="category_name" />
+                  <input type="number" class="form-control" placeholder="100" id="price" name="price"/>
                 </div>
               </div>
 
               <div class="row mb-3">
                 <label class="row-sm-2 row-form-label" for="basic-default-name">Product quantity</label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control" id="category_name" placeholder="100" name="category_name" />
+                  <input type="number" class="form-control" id="quantity" placeholder="100" name="quantity" />
                 </div>
               </div>
 
               <div class="row mb-3">
-                <label class="row-sm-2 row-form-label" for="basic-default-name">Long description</label>
+                <label class="row-sm-2 row-form-label" for="basic-default-name">Short description</label>
                 <div class="col-sm-10">
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>                </div>
+                <textarea class="form-control" id="product_short_des" name="product_short_des" rows="3"></textarea>                </div>
               </div>
 
               <div class="row mb-3">
                 <label class="row-sm-2 row-form-label" for="basic-default-name">Long description</label>
                 <div class="col-sm-10">
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>                </div>
+                <textarea class="form-control" id="product_long_des" name="product_long_des" rows="3"></textarea>                </div>
               </div>
              
              
               <div class="row mb-3">
                 <label class="row-sm-2 row-form-label" for="basic-default-name">Select category</label>
                 <div class="col-sm-10">
-                <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
-                          <option selected>Open this select menu</option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
+                <select class="form-select" id="product_category_id" name="product_category_id" aria-label="Default select example">
+                          <option selected>Select product category</option>
+                          @foreach ($categories as $category)
+                          <option value="{{$category->id}}">{{$category->category_name}}</option>
+                          @endforeach
                         </select>
                   <!-- <input type="text" class="form-control" id="category_name" placeholder="electronics" name="category_name" /> -->
                 </div>
@@ -70,11 +70,11 @@ Add product-kushiCom
               <div class="row mb-3">
                 <label class="row-sm-2 row-form-label" for="basic-default-name">Select subcategory</label>
                 <div class="col-sm-10">
-                <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
+                <select class="form-select" id="product_subcategory_id" name="product_subcategory_id" aria-label="Default select example">
                           <option selected>Open this select menu</option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
+                          @foreach ($subcategories as $subcategory)
+                          <option selected value="{{$subcategory->id}}">{{$subcategory->subcategory_name}}</option>
+                          @endforeach
                         </select>
                   <!-- <input type="text" class="form-control" id="category_name" placeholder="electronics" name="category_name" /> -->
                 </div>
@@ -82,7 +82,7 @@ Add product-kushiCom
 
               <div class="mb-3">
                         <label for="formFile" class="form-label">Upload product image</label>
-                        <input class="form-control" type="file" id="formFile" />
+                        <input class="form-control" type="file" id="product_image"  name="product_image" />
                       </div>
 
               <div class="row justify-content-end">
